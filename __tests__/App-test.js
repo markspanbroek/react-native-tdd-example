@@ -20,3 +20,8 @@ it('shows messages', () => {
     expect(queryByText(message)).not.toBeNull()
   })
 })
+
+it('has an input field for messages', () => {
+  const { queryByPlaceholder } = render(<App />)
+  expect(queryByPlaceholder('Type a message')).not.toBeNull()
+})
