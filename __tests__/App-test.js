@@ -33,7 +33,7 @@ describe('message sending', () => {
     expect(rendered.queryByText(message)).not.toBeNull()
   })
   
-  it('clears the message field after a message has been sent', async () => {
+  it('clears the message field after a message has been sent', () => {
     fireEvent.changeText(input, message)
     fireEvent.press(button)
     expect(input.props.value).toEqual('')
