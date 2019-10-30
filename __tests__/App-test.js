@@ -4,38 +4,46 @@ import App from '../App';
 
 import { render, fireEvent } from '@testing-library/react-native'
 
+var rendered
+
+beforeEach(() => {
+  rendered = render(<App />)
+})
+
 it('welcomes', () => {
-  const { queryByText } = render(<App />)
-  expect(queryByText('Welcome')).not.toBeNull()
+  expect(rendered.queryByText('Welcome')).not.toBeNull()
 })
 
 it('has an input field for messages', () => {
-  const { queryByPlaceholderText } = render(<App />)
-  expect(queryByPlaceholderText('Type a message')).not.toBeNull()
+  expect(rendered.queryByPlaceholderText('Type a message')).not.toBeNull()
 })
 
 it('has a send button', () => {
-  const { queryByText } = render(<App />)
-  expect(queryByText('Send')).not.toBeNull()
+  expect(rendered.queryByText('Send')).not.toBeNull()
 })
 
-it('shows a message when it has been sent', () => {
-  const { queryByText, getByPlaceholderText, getByText } = render(<App />)
+describe('message sending', () => {
   const message = "some message"
-  expect(queryByText(message)).toBeNull()
-  const input = getByPlaceholderText('Type a message')
-  const button = getByText('Send')
-  fireEvent.changeText(input, message)
-  fireEvent.press(button)
-  expect(queryByText(message)).not.toBeNull()
-})
+  var input, button
+  
+  beforeEach(() => {
+    input = rendered.getByPlaceholderText('Type a message')
+    button = rendered.getByText('Send')
+  })
 
-it('clears the message field after a message has been sent', async () => {
-  const { getByPlaceholderText, getByText } = render(<App />)
-  const input = getByPlaceholderText('Type a message')
-  const button = getByText('Send')
-  const message = "some message"
-  fireEvent.changeText(input, message)
-  fireEvent.press(button)
-  expect(input.props.value).toEqual('')
+  it('does not show a message by default', () => {
+    expect(rendered.queryByText(message)).toBeNull()
+  })
+
+  it('shows a message when it has been sent', () => {
+    fireEvent.changeText(input, message)
+    fireEvent.press(button)
+    expect(rendered.queryByText(message)).not.toBeNull()
+  })
+  
+  it('clears the message field after a message has been sent', async () => {
+    fireEvent.changeText(input, message)
+    fireEvent.press(button)
+    expect(input.props.value).toEqual('')
+  })  
 })
