@@ -9,17 +9,6 @@ it('welcomes', () => {
   expect(queryByText('Welcome')).not.toBeNull()
 })
 
-it('shows messages', () => {
-  const messages = [
-    "First message",
-    "Some other message"
-  ]
-  const { queryByText } = render(<App messages={messages} />)
-  messages.forEach(message => {
-    expect(queryByText(message)).not.toBeNull()
-  })
-})
-
 it('has an input field for messages', () => {
   const { queryByPlaceholderText } = render(<App />)
   expect(queryByPlaceholderText('Type a message')).not.toBeNull()
