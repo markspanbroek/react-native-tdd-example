@@ -24,3 +24,8 @@ it('has an input field for messages', () => {
   const { queryByPlaceholderText } = render(<App />)
   expect(queryByPlaceholderText('Type a message')).not.toBeNull()
 })
+
+it('has a send button', () => {
+  const { queryByText } = render(<App />)
+  expect(queryByText('Send')).not.toBeNull()
+})
