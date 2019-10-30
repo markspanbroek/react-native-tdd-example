@@ -23,6 +23,6 @@
     "react-test-renderer": "16.8.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "@testing-library/react-native"
   }
 }
