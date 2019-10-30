@@ -13,7 +13,8 @@ const App = () => {
         onChangeText={(text) => setMessage(text)}
       />
       <Button title='Send' onPress={() => {
-        setMessages(messages.concat(message)) 
+        setMessages(messages.concat(message))
+        setMessage('')
       }}/>
       {
         messages.map((message, index) => <Text key={index}>{message}</Text>)

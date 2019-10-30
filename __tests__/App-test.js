@@ -29,3 +29,13 @@ it('shows a message when it has been sent', () => {
   fireEvent.press(button)
   expect(queryByText(message)).not.toBeNull()
 })
+
+it('clears the message field after a message has been sent', async () => {
+  const { getByPlaceholderText, getByText } = render(<App />)
+  const input = getByPlaceholderText('Type a message')
+  const button = getByText('Send')
+  const message = "some message"
+  fireEvent.changeText(input, message)
+  fireEvent.press(button)
+  expect(input.props.value).toEqual('')
+})
