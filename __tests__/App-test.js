@@ -14,14 +14,6 @@ it('welcomes', () => {
   expect(rendered.queryByText('Welcome')).not.toBeNull()
 })
 
-it('has an input field for messages', () => {
-  expect(rendered.queryByPlaceholderText('Type a message')).not.toBeNull()
-})
-
-it('has a send button', () => {
-  expect(rendered.queryByText('Send')).not.toBeNull()
-})
-
 describe('message sending', () => {
   const message = "some message"
   var input, button
