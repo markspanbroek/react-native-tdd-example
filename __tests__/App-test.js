@@ -2,8 +2,7 @@ import 'react-native';
 import React from 'react';
 import App from '../App';
 
-import { render } from 'react-native-testing-library'
-import expectExport from 'expect';
+import { render } from '@testing-library/react-native'
 
 it('welcomes', () => {
   const { queryByText } = render(<App />)
@@ -22,6 +21,6 @@ it('shows messages', () => {
 })
 
 it('has an input field for messages', () => {
-  const { queryByPlaceholder } = render(<App />)
-  expect(queryByPlaceholder('Type a message')).not.toBeNull()
+  const { queryByPlaceholderText } = render(<App />)
+  expect(queryByPlaceholderText('Type a message')).not.toBeNull()
 })
